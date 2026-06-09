@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jolie Rose</title>
+<script>
+  // GitHub Pages 404 trick:
+  // When GitHub Pages can't find /products/ring-1, it serves this 404.html.
+  // We save the intended path to sessionStorage, then redirect to index.html
+  // which reads it and routes correctly.
+  const path = window.location.pathname;
+  const repo = 'website'; // your GitHub Pages repo name
+  // Strip the /website prefix so the stored path is relative
+  const stripped = path.startsWith('/' + repo) ? path.slice(repo.length + 1) : path;
+  const search = window.location.search;
+  sessionStorage.setItem('jr_redirect_path', (stripped || '/') + search);
+  // Redirect to the root index.html
+  window.location.replace('/' + repo + '/');
+</script>
+</head>
+<body></body>
+</html>
